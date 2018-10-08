@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Simple Movie Search App | Tutorialzine Demo</title>
+{% load staticfiles %}
+<link rel="stylesheet" type="text/css" href="{% static 'dm/styles.css' %}" />
+
+</head>
+
+<body>
+    <div id="logo">
+        <div id="icon"></div>
+        <div id="movieAppLabel"></div>
+    </div>
+    <div id="holder">
+    	
+            <fieldset>
+            
+            </fieldset>
+        </form>
+       
+    </div>
+  
+   
+   <canvas id="myCanvas" width="578" height="200"></canvas>
+   
+   
+     <form name="Form" id="Form" action="form.php?action=form_action" method="post" enctype ="multipart/form-data">
+     <input type ="hidden" name ="moviename" value=" " id="moviename"/>
+	 </form>
+   
+   
+	
+	
+	
+	
+	</p>
+	</div>
+       
+   
+   
+    <script type="text/javascript">
+	
+	
+	
+	
+	   function postform(mymovie){
+		   var form = document.getElementById('Form');
+		   form.setAttribute('action','form.php?action='+action);
+		   document.getElementById('moviename').value=mymovie;
+	   
+			form.submit();
+	   }
+	   
+	   
+	   
+       function loadImages(sources, callback) {
+        var images = {};
+        var loadedImages = 0;
+        var numImages = 0;
+        // get num of sources
+        for(var src in sources) {
+          numImages++;
+        }
+        for(var src in sources) {
+          images[src] = new Image();
+          images[src].onload = function() {
+            if(++loadedImages >= numImages) {
+              callback(images);
+            }
+          };
+          images[src].src = sources[src];
+        }
+      }
+      var canvas = document.getElementById('myCanvas');
+      var context = canvas.getContext('2d');
+
+      var sources = {//three images is limit to fit 
+        img1: "{{imge.0}}",
+        img2: "{{imge.1}}",
+		img3:"{{imge.2}}"
+	  };
+		
+	  
+        loadImages(sources, function(images) {
+        context.drawImage(images.img1, 0, 30, 200, 137);
+        context.drawImage(images.img2, 220, 30, 200, 137);
+		context.drawImage(images.img3, 440, 30, 200, 147);
+      });
+      
+	   for(var i = 0;i<images.length ;i++){//hi ek list ahe ka dict/check?
+	    var image =images[i];
+		image.onclick = function(event){
+		  window.location.href ={% url 'try1' %};
+		  //postform(khr)//exactly kaay pass karaychay
+		};
+	   }
+	   
+	   
+	   
+	  </script>
+	{{imge.0}}
+
+{{imge.1}}
+
+{{imge.2}}
+
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/jquery-ui.min.js"></script>
+<script src="script.js"></script>
+
+	{{imge.0}}
+    {{imge.1}}
+	{{imge.2}}
+</body>
+</html>

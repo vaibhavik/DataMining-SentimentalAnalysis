@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Simple Movie Search| Tutorialzine Demo</title>
+{% load staticfiles %}
+<link rel="stylesheet" type="text/css" href="{% static 'dm/styles.css' %}" />
+</head>
+<body>
+
+<div id="page">
+    <div id="logo">
+        <div id="icon"></div>
+    </div>
+	
+    <div id="holder">
+    	<form action="recommend" method="post" >
+            <fieldset>
+              <input type="text" id="movieName" name="movieName" 
+               <input style="float:right;" type="submit" value="Search"/>            </fieldset>
+           
+        </form>
+       
+    </div>
+
+
+<div class ="check">
+         <b><font size="6"  color="Black" face ="Comic Sans MS">EKdam latest</font></b>     
+</div>
+
+  <canvas id="myCanvas" width="578" height="200"></canvas>
+  
+    <script type="text/javascript">
+      function loadImages(sources, callback) {
+        var images = {};
+        var loadedImages = 0;
+        var numImages = 0;
+        // get num of sources
+        for(var src in sources) {
+          numImages++;
+        }
+        for(var src in sources) {
+          images[src] = new Image();
+          images[src].onload = function() {
+            if(++loadedImages >= numImages) {
+              callback(images);
+            }
+          };
+          images[src].src = sources[src];
+        }
+      }
+      var canvas = document.getElementById('myCanvas');
+      var context = canvas.getContext('2d');
+      {% load staticfiles %}
+
+
+      var sources = {
+
+        titanic:"{{imge.0}}",
+        brave: "{{imge.1}}",
+    findindnemo:"{{imge.2}}"
+    };
+
+      loadImages(sources, function(images) {
+        context.drawImage(images.titanic, 0, 30, 200, 137);
+        context.drawImage(images.brave, 220, 30, 200, 137);
+    context.drawImage(images.findindnemo, 440, 30, 200, 147);
+      });
+
+    </script>
+    
+</div>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/jquery-ui.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
